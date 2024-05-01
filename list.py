@@ -60,6 +60,7 @@ class List_array():
 
 # Doubly Linked List based List ADT
 class List_DLL():
+  value = 50
   def __init__(self):
     self.head = node.DoubleNode('header')
     self.tail = node.DoubleNode('trailer')

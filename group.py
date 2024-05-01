@@ -1,7 +1,9 @@
 import exception
 import list
+import node
 
-# 설계방안 1 : 레코드의 리스트(array 예시) 이용
+
+# 설계방안 A : 레코드의 리스트(array 예시) 이용
 class Group_array(list.List_array):
     def __init__(self, length):
         self.length = length
@@ -47,10 +49,25 @@ class Group_array(list.List_array):
             else:
                 i += 1
                 
-# 설계방안 2A : 부리스트(배열)의 리스트(배열) 이용
+# 설계방안 B1 : 부리스트(배열)의 리스트(배열) 이용
 pass
 
-# 설계방안 2B : 부리스트(연결리스트)의 리스트(배열) 이용
+# 설계방안 B2 : 부리스트(연결리스트)의 리스트(배열) 이용
 class Group2_DLL():
-    def __init__(self):
-        pass
+    def __init__(self, length):
+        self.length = length
+        self.groups = [node.DoubleNode(f'header{i}') for i in range(length)]
+    
+    def traverseGroup(self, g):
+        head = self.groups[g].next
+        while(head != None):
+            print(head.data)
+            head = head.next
+    
+    def addElementLast(self, e, g):
+        new_node = node.DoubleNode(e)
+        head = self.groups[g]
+        while (head.next != None):
+            head = head.next
+        head.next = new_node
+        new_node.prev = head
