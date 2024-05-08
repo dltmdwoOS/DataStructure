@@ -10,3 +10,8 @@ class FullStackException(Exception):
   pass
 class EmptyStackException(Exception):
   pass
+
+class FullQueueException(Exception):
+  pass
+class EmptyQueueException(Exception):
+  pass
