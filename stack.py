@@ -37,3 +37,59 @@ class Stack_array():
         for i in range(self.t + 1):
             print(self.stack[i])
     
+
+class MultiStack_1DArray():
+    def __init__(self, N, n):
+        self.stack = [None]*N
+        self.N = N
+        self.n = n
+        self.stackSize = N // n # MaxSize of each Stack 
+        self.b = [i for i in range(-1, N, n)] # Base Index Array
+        self.t = [i for i in range(-1, N-n, n)] # Top Index Array
+        
+    def size(self, i): # Size of Stack(i)
+        return self.t[i] - self.b[i]
+
+    def isEmpty(self, i): # isEmpty of Stack(i)        
+        return self.b[i] == self.t[i]
+    
+    def isFull(self, i):
+        return self.t[i] == self.b[i+1]
+    
+    def top(self, i):
+        if self.isEmpty(i):
+            raise exception.EmptyStackException()
+        return self.stack[self.t[i]]
+    
+    def traverse(self, i):
+        if i > self.n:
+            raise exception.InvalidIndexException()
+        if self.isEmpty(i):
+            raise exception.EmptyStackException()
+        
+        index = self.b[i]
+        while(index != self.t[i]):
+            index += 1
+            print(self.stack[index])
+            
+            
+    def add(self, i, e): # Stack(i)에 e 추가
+        if i > self.n:
+            raise exception.InvalidIndexException()
+        if self.isFull(i):
+            raise exception.FullStackException()
+        
+        self.t[i] += 1
+        self.stack[self.t[i]] = e
+        
+    def pop(self, i): # Stack(i)의 top element pop
+        if i > self.n:
+            raise exception.InvalidIndexException()
+        if self.isEmpty(i):
+            raise exception.EmptyStackException()
+        
+        e = self.stack[self.t[i]]
+        self.t[i] -= 1
+        return e
+        
+    

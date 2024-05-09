@@ -1,5 +1,7 @@
 class InvalidRankException(Exception):
   pass
+class InvalidIndexException(Exception):
+  pass
 
 class FullListException(Exception):
   pass
