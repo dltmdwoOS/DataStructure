@@ -1,4 +1,5 @@
 import exception
+import node
 
 class queue_array():
     def __init__(self, N):
@@ -11,21 +12,21 @@ class queue_array():
         return (self.N + self.r - self.f + 1)%self.N
     
     def isEmpty(self):
-        return self.size() == 0
+        return self.size() == 0 ## (r + 1 (+ N))%N == f
     def isFull(self):
-        return self.size() == self.N - 1
+        return self.size() == self.N - 1 ## (r + 2 (+ N))%N == f
     
     def enqueue(self, e):
         if self.isFull():
             exception.FullQueueException()
-        self.r = (self.r + 1)%self.N
+        self.r = (self.r + 1)%self.N # r 증가
         self.Q[self.r] = e
         
     def dequeue(self):
         if self.isEmpty():
             exception.EmptyQueueException()
         e = self.Q[self.f]
-        self.f = (self.f + 1)%self.N
+        self.f = (self.f + 1)%self.N # f 증가
         return e
     
     def front(self):
@@ -33,4 +34,36 @@ class queue_array():
             exception.EmptyQueueException()
         return self.Q[self.f]
         
+        
+class queue_SLL():
+    def __init__(self) -> None:
+        self.f = None
+        self.r = None
+        
+    def isEmpty(self):
+        return self.f == None
+    
+    def enqueue(self, e):
+        new_node = node.SingleNode() # constructor : new_node.next == None
+        new_node.data = e
+        if self.isEmpty():
+            self.f = self.r = new_node
+        else:
+            self.r.next = new_node
+            self.r = self.r.next
+            
+    def dequeue(self):
+        if self.isEmpty():
+            raise exception.EmptyQueueException()
+        e = self.f.data
+        self.f = self.f.next
+        if (self.f == None):
+            self.r = None
+        return e
+    
+    
+class deque_array():
+    def __init__(self) -> None:
+        pass
+            
         
