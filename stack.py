@@ -2,7 +2,7 @@ import node
 import exception
 import my_queue
 
-class Stack_array():
+class Stack_array(): # 배열 스택
     def __init__(self, N):
         self.stack = [None]*N
         self.N = N
@@ -39,7 +39,7 @@ class Stack_array():
             print(self.stack[i])
     
 
-class MultiStack_1DArray():
+class MultiStack_1DArray(): # 1차원배열 다중스택
     def __init__(self, N, n):
         self.stack = [None]*N
         self.N = N
@@ -94,7 +94,7 @@ class MultiStack_1DArray():
         return e
         
     
-class stack_queue():
+class stack_queue(): # 이중큐 스택
     def __init__(self) -> None:
         self.queue1 = my_queue.queue_SLL()
         self.queue2 = my_queue.queue_SLL()

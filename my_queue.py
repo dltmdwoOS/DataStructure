@@ -2,7 +2,7 @@ import exception
 import node
 import stack
 
-class queue_array():
+class queue_array(): # 배열 큐
     def __init__(self, N):
         self.Q = [None]*N
         self.N = N
@@ -36,7 +36,7 @@ class queue_array():
         return self.Q[self.f]
         
         
-class queue_SLL():
+class queue_SLL(): # 단일연결리스트 큐
     def __init__(self) -> None:
         self.f = None
         self.r = None
@@ -60,14 +60,8 @@ class queue_SLL():
         if (self.f == None):
             self.r = None
         return e
-    
-    
-class deque_array():
-    def __init__(self) -> None:
-        pass
-            
         
-class queue_stack():
+class queue_stack(): # 이중스택 큐
     def __init__(self) -> None:
         self.stack1 = stack.Stack_array(100)
         self.stack2 = stack.Stack_array(100)
