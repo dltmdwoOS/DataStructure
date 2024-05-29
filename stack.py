@@ -1,5 +1,6 @@
 import node
 import exception
+import my_queue
 
 class Stack_array():
     def __init__(self, N):
@@ -93,3 +94,23 @@ class MultiStack_1DArray():
         return e
         
     
+class stack_queue():
+    def __init__(self) -> None:
+        self.queue1 = my_queue.queue_SLL()
+        self.queue2 = my_queue.queue_SLL()
+        
+    def push(self, e):
+        self.queue1.enqueue(e)
+    
+    def pop(self):
+        if self.queue1.isEmpty():
+            exception.EmptyStackException()
+        e = None
+        while(1):
+            e = self.queue1.dequeue()
+            if self.queue1.isEmpty():
+                break
+            self.queue2.enqueue(e)
+        while(not self.queue2.isEmpty()):
+            self.queue1.enqueue(self.queue2.dequeue())
+        return e

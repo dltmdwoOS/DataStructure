@@ -1,5 +1,6 @@
 import exception
 import node
+import stack
 
 class queue_array():
     def __init__(self, N):
@@ -44,8 +45,7 @@ class queue_SLL():
         return self.f == None
     
     def enqueue(self, e):
-        new_node = node.SingleNode() # constructor : new_node.next == None
-        new_node.data = e
+        new_node = node.SingleNode(e) # constructor : new_node.next == None, new_node.data == e
         if self.isEmpty():
             self.f = self.r = new_node
         else:
@@ -67,3 +67,20 @@ class deque_array():
         pass
             
         
+class queue_stack():
+    def __init__(self) -> None:
+        self.stack1 = stack.Stack_array(100)
+        self.stack2 = stack.Stack_array(100)
+        
+    def enqueue(self, e):
+        self.stack1.push(e)
+        
+    def dequeue(self):
+        if self.isEmpty():
+            exception.EmptyQueueException()
+        if self.stack2.isEmpty():
+            while (not self.stack1.isEmpty()):
+                self.stack2.push(self.stack1.pop())
+        return self.stack2.pop()
+    
+    
